@@ -5,8 +5,10 @@ import base64
 def generate_916_card(
     img_path: str,
     en_US: str,
+    en_US_pronounce: str,
     zh_CN: str,
     ko_KR: str,
+    ko_RO: str,
     jp_JP: str,
     jp_RO: str,
     out_path: str = "output_card.png",
@@ -33,8 +35,10 @@ def generate_916_card(
     # 替换占位符
     html_text = html_text.replace("{{IMG_BASE64}}", img_data_url)
     html_text = html_text.replace("{{en_US}}", en_US)
+    html_text = html_text.replace("{{en_US_pronounce}}", en_US_pronounce)
     html_text = html_text.replace("{{zh_CN}}", zh_CN)
     html_text = html_text.replace("{{ko_KR}}", ko_KR)
+    html_text = html_text.replace("{{ko_RO}}", ko_RO)
     html_text = html_text.replace("{{jp_JP}}", jp_JP)
     html_text = html_text.replace("{{jp_RO}}", jp_RO)
 
@@ -54,8 +58,10 @@ if __name__ == "__main__":
     generate_916_card(
         img_path="apple.png",
         en_US="apple",
+        en_US_pronounce="/ˈæpl/",
         zh_CN="苹果",
         ko_KR="사과",
+        ko_RO="sagwa",
         jp_JP="りんご（林檎）",
         jp_RO="ringo",
         out_path="苹果.png"
@@ -63,8 +69,10 @@ if __name__ == "__main__":
     generate_916_card(
         img_path="orange.png",
         en_US="mandarin orange",
+        en_US_pronounce="/ˌmændərɪn ˈɔːrɪndʒ/",
         zh_CN="橘子",
         ko_KR="귤",
+        ko_RO="gyul",
         jp_JP="みかん（蜜柑）",
         jp_RO="mikan",
         out_path="橘子.png"

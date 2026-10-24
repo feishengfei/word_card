@@ -8,7 +8,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     width: 1080px;
     height: 1920px;
@@ -19,7 +18,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
 /* 图片区域固定占上半区 1080x1080 */
 .img-wrap {
     width: 1080px;
@@ -29,13 +27,11 @@ body {
     justify-content: center;
     z-index: 1;
 }
-
 .main-img {
     width: 1080px;
     height: 1080px;
     object-fit: contain;
 }
-
 /* 文字区域固定 1080x840，自动均分垂直空间 */
 .text-container {
     width: 1080px;
@@ -46,15 +42,39 @@ body {
     align-items: center;
     z-index: 1;
 }
-
+/* 普通单行条目，en_US / zh_CN / ko_KR */
 .line {
+    width: 100%;
+    text-align: center;
     font-weight: 700;
     font-size: 72px;
     color: #222222;
     line-height: 1.3;
-    text-align: center;
 }
-
+/* 日语组合容器，整体高度等价于一个 .line */
+.line-wrap {
+    width:100%;
+    display:flex;
+    flex-direction: column;
+}
+.line_main {
+    flex: 6;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:72px;
+    color:#222222;
+}
+.line_sub {
+    flex: 4;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:44px;
+    color:#555555;
+}
 /* 底部版权小字 */
 .footer-copyright {
     position: absolute;
@@ -73,15 +93,21 @@ body {
     <div class="img-wrap">
         <img class="main-img" src="{{IMG_BASE64}}">
     </div>
-
     <div class="text-container">
-        <div class="line">{{en_US}}</div>
+        <div class="line-wrap">
+            <div class="line_main">{{en_US}}</div>
+            <div class="line_sub">{{en_US_pronounce}}</div>
+        </div>
         <div class="line">{{zh_CN}}</div>
-        <div class="line">{{ko_KR}}</div>
-        <div class="line">{{jp_JP}}</div>
-        <div class="line">{{jp_RO}}</div>
+        <div class="line-wrap">
+            <div class="line_main">{{jp_JP}}</div>
+            <div class="line_sub">{{jp_RO}}</div>
+        </div>
+        <div class="line-wrap">
+            <div class="line_main">{{ko_KR}}</div>
+            <div class="line_sub">{{ko_RO}}</div>
+        </div>
     </div>
-
     <div class="footer-copyright">Copyright © 2026 文画卷</div>
 </body>
 </html>
