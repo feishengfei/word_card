@@ -120,6 +120,6 @@ python make_card_cli.py ./家畜/card_00001_.yaml ./家禽/card_00002_.yaml
 
 # Demo
 
-![apple](/Users/felix/workspace/word_card/苹果.png)
+![apple](苹果.png)
 
 ![mandarian orange](橘子.png)
