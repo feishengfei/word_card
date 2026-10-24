@@ -60,3 +60,12 @@ if __name__ == "__main__":
         jp_RO="ringo",
         out_path="苹果.png"
     )
+    generate_916_card(
+        img_path="orange.png",
+        en_US="mandarin orange",
+        zh_CN="橘子",
+        ko_KR="귤",
+        jp_JP="みかん（蜜柑）",
+        jp_RO="mikan",
+        out_path="橘子.png"
+    )
