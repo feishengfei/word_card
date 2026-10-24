@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+                body {
+                    width: 1080px;
+                    height: 1920px;
+                    background-color: #ffffff;
+                    font-family: "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", sans-serif;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding-top: 80px;
+                }
+                .main-img {
+                    width: 720px;
+                    height: 720px;
+                    object-fit: contain;
+                }
+                .text-container {
+                    margin-top: 80px;
+                    width: 900px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 36px;
+                }
+                .line {
+                    font-weight: bold;
+                    font-size: 48px;
+                    color: #222222;
+                    line-height: 1.4;
+                }
+        </style>
+    </head>
+    <body>
+        <img class="main-img" src="{{IMG_SRC}}">
+        <div class="text-container">
+            <div class="line">{{en_US}}</div>
+            <div class="line">{{zh_CN}}</div>
+            <div class="line">{{ko_KR}}</div>
+            <div class="line">{{jp_JP}}</div>
+            <div class="line">{{jp_RO}}</div>
+        </div>
+    </body>
+</html>
+
