@@ -92,6 +92,8 @@ body {
     z-index:1;
     width: 85%;
     margin:0 auto; /* ✅音标块盒子也居中 */
+    /* 音标优先Charis SIL，完美处理U+0361连冠符号；兜底保留多语言字体栈 */
+    font-family: "Charis SIL", "Doulos SIL", "Noto Sans", "Noto Sans SC", "Noto Sans Arabic", system-ui, sans‑serif;
     font-weight:500;
     font-size:28px;
     color:#444444;
