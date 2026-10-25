@@ -59,7 +59,7 @@ body {
     display:flex;
     flex-direction: column;
     justify-content: center;
-    gap: 8px; /* 单词和音标垂直紧凑间隙，调大就变疏 */
+    gap: 8px; /* 单词和音标垂直紧凑间隙 */
     border-radius:12px;
     overflow:hidden;
 }
@@ -79,42 +79,33 @@ body {
 .line_main {
     position:relative;
     z-index:1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    width: 85%; /* 限制内容块宽度，不要撑满整格 */
+    margin: 0 auto; /* ✅块盒子在格子里面水平居中 */
     font-weight:700;
     font-size:42px;
     color:#222222;
-    padding: 0 12px;
+    padding: 0 8px;
+    text-align: center; /* 默认居中（其它语种） */
 }
 .line_sub {
     position:relative;
     z-index:1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    width: 85%;
+    margin:0 auto; /* ✅音标块盒子也居中 */
     font-weight:500;
     font-size:28px;
     color:#444444;
-    padding:0 12px;
-}
-/* 阿拉伯语：文字右对齐 */
-.ar-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;       /* 整体内容在格子里居中 */
-    justify-content: center;
+    padding:0 8px;
+    text-align:center; /* 音标全部统一居中 */
 }
 
+/* ========== 阿拉伯语特殊覆写 ========== */
 .ar-wrap .line_main {
-    text-align: right;         /* 阿拉伯单词本身右对齐 */
-    direction: rtl;
+    direction: rtl;         /* 开启阿拉伯从右向左书写 */
+    text-align: right;      /* 🎯块盒子是居中的；但盒子内部文字靠右 */
 }
+/* ar-wrap 的 line_sub 不做任何修改，继承上面的：块居中 + text‑align:center，和别的语种音标完全一致 */
 
-.ar-wrap .line_sub {
-    text-align: center;       /* 音标居中，和其他语种统一 */
-    direction: ltr;
-}
 /* 版权放在右侧区域底部，不再全局absolute */
 .footer-copyright {
     text-align: center;
@@ -175,4 +166,3 @@ body {
     </div>
 </body>
 </html>
-
