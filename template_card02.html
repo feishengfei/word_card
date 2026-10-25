@@ -99,10 +99,21 @@ body {
     padding:0 12px;
 }
 /* 阿拉伯语：文字右对齐 */
-.ar-wrap .line_main,
+.ar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;       /* 整体内容在格子里居中 */
+    justify-content: center;
+}
+
+.ar-wrap .line_main {
+    text-align: right;         /* 阿拉伯单词本身右对齐 */
+    direction: rtl;
+}
+
 .ar-wrap .line_sub {
-    justify-content: flex-end;
-    text-align:right;
+    text-align: center;       /* 音标居中，和其他语种统一 */
+    direction: ltr;
 }
 /* 版权放在右侧区域底部，不再全局absolute */
 .footer-copyright {

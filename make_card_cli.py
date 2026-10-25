@@ -87,10 +87,8 @@ def generate_16_9_card(
     mime = mime_map.get(ext, "image/png")
     b64_data = base64.b64encode(img_bytes).decode("utf‑8")
     img_data_url = f"data:{mime};base64,{b64_data}"
-
     with open(html_template_path, "r", encoding="utf-8") as f:
         html_text = f.read()
-
     html_text = html_text.replace("{{IMG_BASE64}}", img_data_url)
     html_text = html_text.replace("{{en_GB}}", en_GB)
     html_text = html_text.replace("{{en_GB_IPA}}", en_GB_IPA)
@@ -108,7 +106,6 @@ def generate_16_9_card(
     html_text = html_text.replace("{{ar_SA_IPA}}", ar_SA_IPA)
     html_text = html_text.replace("{{ru_RU}}", ru_RU)
     html_text = html_text.replace("{{ru_RU_IPA}}", ru_RU_IPA)
-
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page(viewport={"width": 1920, "height": 1080})
@@ -137,11 +134,15 @@ def process_yaml(yaml_file: str, template_916_html: str, template_169_html: str)
     for idx, entry in enumerate(entries):
         img_filename = f"img_{idx+1:05d}_.png"
         img_abs = os.path.join(yaml_dir, img_filename)
+
         zhcn_raw = entry["zh_CN"]
-        safe_name = sanitize_filename(zhcn_raw)
+        en_gb_raw = entry["en_GB"]
+
+        safe_zh = sanitize_filename(zhcn_raw)
+        safe_en = sanitize_filename(en_gb_raw)
 
         # ---旧竖版输出---
-        out_916 = os.path.join(yaml_dir, f"{safe_name}.png")
+        out_916 = os.path.join(yaml_dir, f"{idx+1:02d}_{safe_zh}.png")
         generate_916_card(
             img_path=img_abs,
             en_US=entry["en_US"],
@@ -156,8 +157,8 @@ def process_yaml(yaml_file: str, template_916_html: str, template_169_html: str)
             html_template_path=template_916_html
         )
 
-        # ---新增横版宽卡片输出---
-        out_169 = os.path.join(yaml_dir, f"wide_{safe_name}.png")
+        # ---横版宽卡片：wide_中文名_英文名.png，中英文都sanitize处理
+        out_169 = os.path.join(yaml_dir, f"wide_{idx+1:02d}_{safe_zh}_{safe_en}.png")
         generate_16_9_card(
             img_path=img_abs,
             en_GB=entry["en_GB"],
@@ -189,7 +190,6 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     template_916_html = os.path.join(script_dir, "template_card.html")
     template_169_html = os.path.join(script_dir, "template_card02.html")
-
     if not os.path.exists(template_916_html):
         raise FileNotFoundError(f"找不到竖版模板：{template_916_html}")
     if not os.path.exists(template_169_html):
